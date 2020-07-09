@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>學期區間設定</title>
+    <!-- jQuery v1.9.1 -->
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- pickadate.js v3.5.6 -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+	<style>
+      .bg 
+	  {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -999;
+      }
+      .bg img 
+	  {
+        min-height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+  <a href="operation.php"><h2 align=right><font color="red">回操作頁面</font></h2></a>
+  <br><br><br><br><br><br>
+    <div class="bg">
+      <img src="images/bgimg1.jpg">
+    </div>
+	<form method=get action=set_semester.php>
+    <table border=2 align=center width=38%>
+    <tr>
+		<td rowspan=5 align=center><img src="https://upload.wikimedia.org/wikipedia/zh/4/49/FJU_Flag.jpg" width=250 height=220></td>
+		<th><font size=5 color="red">設定學期區間</font></th>
+    </tr>
+	<tr>
+		<td>
+		  <font size=4 color="blue">選擇學期:</font>&nbsp;
+		  <select name="semesteryear">
+　			<option value="107">107</option>
+　			<option value="108">108</option>
+　			<option value="109">109</option>
+		  </select>&nbsp;&nbsp;
+		  <select name="semester">
+　			<option value="1">1</option>
+　			<option value="2">2</option>
+		  </select>
+		</td>
+    </tr>
+    <tr>
+		<td><font size=4 color="blue">學期區間起:</font>&nbsp;<input type="text" name="datestart" class=date_s></td>
+    </tr>
+	<tr>
+		<td><font size=4 color="blue">學期區間迄:</font>&nbsp;<input type="text" name="dateend" class=date_e></td>
+    </tr>
+    <tr>
+		<td align=center>
+			<input type="submit" value="開始設定" align=center>
+		</td>
+    </tr>
+    </table>
+	</form>
+
+	<script>
+		$( ".date_s" ).pickadate({ 
+			format: 'yyyy-mm-dd', 
+			min: -0, 
+			max: +0, 
+			closeOnSelect: true, 
+			closeOnClear: true, 
+		});
+
+		$( ".date_e" ).pickadate({ 
+			format: 'yyyy-mm-dd', 
+			min: -0, 
+			max: +0, 
+			closeOnSelect: true, 
+			closeOnClear: true, 
+		});
+	</script>
+  </body>
+</html>

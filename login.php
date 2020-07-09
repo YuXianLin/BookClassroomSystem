@@ -1,0 +1,35 @@
+<?php
+  $accountnumber=$_POST["account_number"];
+  $passnumber=$_POST["pass_number"];
+  $link=mysql_connect("localhost","root","a311006leo");
+  mysql_select_db("web",$link);
+  $sql="select * from teacher where t_account='$accountnumber' and t_password='$passnumber'";
+
+  if($result=mysql_query($sql,$link))
+  {
+	if(mysql_num_rows($result)==1)
+	{
+	  session_start();
+		$_SESSION["user"]=$accountnumber;
+		$record=mysql_fetch_row($result);
+	  if($record[5]==1)
+	  {
+        $_SESSION["level"]="admins";
+	  }
+	  else
+	  {
+		$_SESSION["level"]="users";
+	  }
+	  header('location:operation.php');
+	}
+	else
+	{
+?>
+	  <script>
+	  alert('帳號或密碼錯誤');
+	  history.back();
+	  </script>
+<?
+	}
+  }
+?>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>使用者登入畫面</title>
+	<style>
+      .bg 
+	  {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -999;
+      }
+      .bg img 
+	  {
+        min-height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <img src="images/bgimg1.jpg">
+    </div>
+	<p align=center><font size=20 color=white>輔仁大學<br>預約教室系統--登入畫面</font></p>
+	<br><br><br>
+	<form method="post" action="login.php">
+	  <table border=5 bordercolor=#0033cc width=500 height=300 align=center>
+	    <tr>
+		  <td colspan=5 align=center><font size=5 color=red>請輸入帳號和密碼</font></td>
+	    </tr>
+	    <tr>
+		  <td colspan=2 rowspan=2 align=center valign=center  width=45%><img src="http://www.fju.edu.tw/showImg/subLabelImg/1_5_19_1.jpg"></td>
+		  <td colspan=3 align=center>
+		    <font size=5 color=#3366cc>帳號:</font>
+			<input type="text" name="account_number" size=20 required>
+		  </td>
+	    </tr>
+	    <tr>
+		  <td colspan=3 align=center>
+		    <font size=5 color=#3366cc>密碼:</font>
+			<input type="password" name="pass_number" size=20 required>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td colspan=5 align=center>
+		    <a href="http://whoami.fju.edu.tw/pw_forget.php" target="_other">忘記密碼?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="登入" align=right>&nbsp;&nbsp;
+			<input type="reset" value="重新輸入" align=center>
+		  </td>
+	    </tr>
+      </table>
+	<form>
+  </body>
+</html>

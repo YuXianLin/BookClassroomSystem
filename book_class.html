@@ -1,0 +1,235 @@
+<!DOCTYPE html> 
+<html> 
+  <head>
+    <meta charset="utf-8">
+	<title>預約教室</title>
+	<style>
+      .bg 
+	  {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -999;
+      }
+      .bg img 
+	  {
+        min-height: 100%;
+        width: 100%;
+      }
+    </style>
+	<style> 
+	  /* The Modal (background) */ 
+	  .modal 
+	  { 
+		display: none; /* Hidden by default */ 
+		position: fixed; /* Stay in place */ 
+		z-index: 1; /* Sit on top */ 
+		padding-top: 100px; /* Location of the box */ 
+		left: 0; 
+		top: 0; 
+		width: 100%; /* Full width */ 
+		height: 100%; /* Full height */ 
+		overflow: auto; /* Enable scroll if needed */ 
+		background-color: rgb(0,0,0); /* Fallback color */ 
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ 
+	  }  
+	  /* Modal Content */ 
+	  .modal-content 
+	  { 
+		background-color: #fefefe; 
+		margin: auto; 
+		padding: 20px; 
+		border: 1px solid #888; 
+		width: 80%; 
+	  }  
+	  /* The Close Button */ 
+	  .close 
+	  { 
+		color: #aaaaaa; 
+		float: right; 
+		font-size: 28px; 
+		font-weight: bold; 
+	  } 	 
+	  .close:hover, 
+	  .close:focus 
+	  { 
+	    color: #000; 
+	    text-decoration: none; 
+	    cursor: pointer; 
+	  } 
+
+	  .button 
+	  {
+	   	display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		padding: 8px 15px;
+		border: 4px solid #5a1394;
+		border-radius: 15px;
+		background: #ff0000;
+		background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#db00db));
+		background: -moz-linear-gradient(top, #ff0000, #db00db);
+		background: linear-gradient(to bottom, #ff0000, #db00db);
+		text-shadow: #591717 1px 4px 1px;
+		font: normal normal bold 23px courier new;
+		color: #6ddb48;
+		text-decoration: none;
+	  }
+	  .button:hover,
+	  .button:focus 
+	  {
+		border: 4px solid #901eed;
+		background: #ff0000;
+		background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#ff00ff));
+		background: -moz-linear-gradient(top, #ff0000, #ff00ff);
+		background: linear-gradient(to bottom, #ff0000, #ff00ff);
+		color: #6ddb48;
+		text-decoration: none;
+	  }
+	  .button:active 
+	  {
+		background: #990000;
+		background: -webkit-gradient(linear, left top, left bottom, from(#990000), to(#db00db));
+		background: -moz-linear-gradient(top, #990000, #db00db);
+		background: linear-gradient(to bottom, #990000, #db00db);
+	  }
+	  .profile 
+	  {
+		border-radius: 50%;
+		border:5px solid #fff;
+	  }
+	</style> 
+
+	<!-- jQuery v1.9.1 -->
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- pickadate.js v3.5.6 -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+  </head> 
+  <body> 
+    <div class="bg">
+      <img src="images/bgimg1.jpg">
+    </div>
+	<a href="operation.php"><h2 align=right><font color="red">回操作頁面</font></h2></a>
+    <br><br><br>
+    <table border=0 align=center width=60%>
+	  <tr align=center height=250>
+		<td><img src="images/i5.jpg" alt="Pic 01" class="profile"/></td>
+		<td><img src="images/i4.jpg" alt="Pic 02" class="profile"/></td>
+      </tr>
+	  <tr align=center>
+		<td><h1><font color="red">平時預借</font></h1></td>
+		<td><h1><font color="red">學期預借</font></h1></td>
+      </tr>
+      <tr align=center>
+		<td><a class="button" href="#" id="myBtn">開始預約</a></td>
+		<td><a class="button" href="#" id="myBtn1">開始預約</a></td>
+      </tr>
+    </table>
+	
+	<!-- The Modal --> 
+	<div id="myModal" class="modal"> 
+	<!-- Modal content --> 
+	  <div class="modal-content"> 
+	    <span class="close">&times;</span> 
+		<form method="post" action="determine1.php">
+		  日期選擇:&nbsp;<input type="text" class="example" name=dateday required/><br><br>
+		  <font color="blue">#若X功能無法正常使用請重整網頁!#</font><br>
+		  <font color="blue">一次只能選擇一間教室(ex:要預約兩間教室請做兩次預約，依此類推;非連續時段也請預約兩次)</font><br><br>
+		  <input type=submit value="確認送出" name="b1">
+		</form> 
+	  </div> 
+    </div> 
+	<script> 
+	// Get the modal 
+	  var modal = document.getElementById('myModal'); 
+	// Get the button that opens the modal 
+	  var btn = document.getElementById("myBtn"); 
+	// Get the <span> element that closes the modal 
+	  var span = document.getElementsByClassName("close")[0]; 
+	// When the user clicks the button, open the modal  
+	  btn.onclick = function() { 
+	  modal.style.display = "block"; 
+	  } 
+	// When the user clicks on <span> (x), close the modal 
+	  span.onclick = function() { 
+	  modal.style.display = "none"; 
+	  } 
+	</script>
+	
+	<!-- The Modal --> 
+	<div id="myModal1" class="modal"> 
+	<!-- Modal content --> 
+	  <div class="modal-content"> 
+	    <span class="close">&times;</span> 
+		<form method="post" action="determine2.php">
+		  學年選擇:&nbsp;
+			<select name="year">
+　			　<option value="107">107學年度</option>
+　			　<option value="108">108學年度</option>
+　　　　　　</select>&nbsp;&nbsp;
+		  學期選擇:&nbsp;
+			<select name="semester">
+　			　<option value="1">上學期</option>
+　			　<option value="2">下學期</option>
+　　　　　　</select>&nbsp;&nbsp;
+		  星期:&nbsp;
+		    <select name="weekday">
+　			　<option value="1">一</option>
+　			　<option value="2">二</option>
+			  <option value="3">三</option>
+			  <option value="4">四</option>
+			  <option value="5">五</option>
+			  <option value="6">六</option>
+　　　　　　</select>
+		  <br><br>
+		  <font color="blue">#若X功能無法正常使用請重整網頁!#</font><br>
+		  <font color="blue">一次只能選擇一間教室(ex:要預約兩間教室請做兩次預約，依此類推;非連續時段也請預約兩次)</font><br><br>
+		  <input type=submit value="確認送出" name="b2">
+		</form> 
+	  </div> 
+    </div> 
+	<script> 
+	// Get the modal 
+	  var modal1 = document.getElementById('myModal1'); 
+	// Get the button that opens the modal 
+	  var btn1 = document.getElementById("myBtn1"); 
+	// Get the <span> element that closes the modal 
+	  var span1 = document.getElementsByClassName("close")[0]; 
+	// When the user clicks the button, open the modal  
+	  btn1.onclick = function() { 
+	  modal1.style.display = "block"; 
+	  } 
+	// When the user clicks on <span> (x), close the modal 
+	  span1.onclick = function() { 
+	  modal1.style.display = "none"; 
+	  } 
+	</script>
+
+	<script>
+		$( ".example" ).pickadate({ 
+			format: 'yyyy-mm-dd', 
+			min: -0.1, 
+			max: +30, 
+			closeOnSelect: true, 
+			closeOnClear: true, 
+		});
+
+		$( ".example1" ).pickadate({ 
+			format: 'yyyy-mm-dd', 
+			min: -0, 
+			max: +0, 
+			closeOnSelect: true, 
+			closeOnClear: true, 
+		});
+	</script>
+  </body> 
+</html> 
+
+

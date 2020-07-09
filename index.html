@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>index</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<!-- HTML5 shim 和 Respond.js 讓IE8支援HTML5元素和媒體查詢 -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style type="text/css">
+
+			.full-screen {
+			  background-size: cover;
+			  background-position: center;
+			  background-repeat: no-repeat;
+			}
+			.item>a{
+				display: block;
+				height: 100%;
+			}
+
+			.myButton {
+				-moz-box-shadow:inset 0px 0px 30px 0px #1b3d11;
+				-webkit-box-shadow:inset 0px 0px 30px 0px #1b3d11;
+				box-shadow:inset 0px 0px 30px 0px #1b3d11;
+				background-color:#ff0015;
+				-moz-border-radius:30px;
+				-webkit-border-radius:30px;
+				border-radius:30px;
+				border:5px solid #a834eb;
+				display:inline-block;
+				cursor:pointer;
+				color:#141aba;
+				font-family:Arial;
+				font-size:25px;
+				padding:15px 25px;
+				text-decoration:none;
+				text-shadow:0px 0px 5px #0fffff;
+			}
+			.myButton:hover {
+				background-color:#f70063;
+			}
+			.myButton:active {
+				position:relative;
+				top:1px;
+			}
+
+
+		</style>
+  </head>
+  <body>
+    <div id="mycarousel" class="carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators"></ol>
+		  <!-- 廣告輪播列表 -->
+		  <div class="carousel-inner" role="listbox">
+		    <div class="item active">
+		        <img src="images/1.jpg" data-color="#eee">
+		        <div class="carousel-caption">
+				    <font size=100 color=red align=center>歡迎來到</font><br><br><br><br><br><br><br><br><br><br><br><br>
+		            <h3>輔仁大學</h3>
+		        </div>
+		    </div>
+		    <div class="item">
+		        <img src="images/2.jpg" data-color="#eee">
+		        <div class="carousel-caption">
+				    <font size=100 color=red align=center>輔仁大學預約教室系統</font><br><br><br><br><br><br><br><br><br><br><br><br>
+		            <h3>中美堂</h3>
+		        </div>
+		    </div>
+		    <div class="item">
+		        <img src="images/3.jpg" data-color="#eee">
+		        <div class="carousel-caption">
+				    <font size=100 color=red align=center>請點擊下方按鈕登入<br>並開始進行預約</font><br><br><br>
+					<a href="login.html" class="myButton">使用者登入</a>
+					<br><br><br><br>
+		            <h3>蓮花池</h3>
+		        </div>
+		    </div>
+		  </div>
+
+		  <!-- Controls -->
+		  <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		    <span class="sr-only">上一則</span>
+		  </a>
+		  <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		    <span class="sr-only">下一則</span>
+		  </a>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+			$(function(){
+				var $item = $('.carousel .item'); 
+				var $wHeight = $(window).height();
+				$item.height($wHeight); 
+				$item.addClass('full-screen');
+
+				$('.carousel img').each(function() {
+				  var $src = $(this).attr('src');
+				  var $color = $(this).attr('data-color');
+				  $(this).parent().css({
+				    'background-image' : 'url(' + $src + ')',
+				    'background-color' : $color
+				  });
+				  $(this).remove();
+				});
+
+				//下方自動加入控制圓鈕
+				var total = $('.carousel .carousel-inner div.item').size();
+				append_li();
+				function append_li()
+				{
+					var li = "";
+					var get_ac = $( ".carousel .active" );
+					var ac =  $( ".carousel .carousel-inner div" ).index( get_ac );
+
+					for (var i=0; i <= total-1; i++){
+						if(i == (ac)/2){
+							li += "<li data-target='#mycarousel' data-slide-to='"+i+"' class='active'></li>";					
+						}else{
+							li += "<li data-target='#mycarousel' data-slide-to='"+i+"' class=''></li>";						
+							}
+						}
+						$(".carousel-indicators").append(li);
+					}
+		
+				//單則隱藏控制鈕
+				if ($('.carousel .carousel-inner div.item').length < 2 ) { 
+						$('.carousel-indicators, .carousel-control').hide();
+				}
+
+				//縮放視窗調整視窗高度
+				$(window).on('resize', function (){
+				  $wHeight = $(window).height();
+				  $item.height($wHeight);
+				});
+
+				//輪播秒數與滑入停止
+				$('.carousel').carousel({
+				  interval: 3500,
+				  pause: "hover"
+				});
+			});
+		</script>
+  </body>
+</html>
